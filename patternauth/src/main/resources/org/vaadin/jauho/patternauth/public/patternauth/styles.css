@@ -1,6 +1,6 @@
 .node {
 	float: left;
-	margin: 1%;
+	margin: 3%;
 	background: steelblue;
 	border-radius: 50%;
 }
@@ -9,10 +9,24 @@
 	background: red;
 }
 
-.node-selected {
+.node-selected1 {
 	float: left;
-	margin: 1%;
+	margin: 3%;
 	background: orange;
+	border-radius: 50%;
+}
+
+.node-selected2 {
+	float: left;
+	margin: 3%;
+	background: cyan;
+	border-radius: 50%;
+}
+
+.node-selected3 {
+	float: left;
+	margin: 3%;
+	background: yellow;
 	border-radius: 50%;
 }
 
