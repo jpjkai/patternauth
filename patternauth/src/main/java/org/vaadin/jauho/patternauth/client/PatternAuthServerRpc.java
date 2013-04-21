@@ -8,5 +8,6 @@ public interface PatternAuthServerRpc extends ServerRpc {
 
 	// Example API: Widget click is clicked
 	public void clicked(MouseEventDetails mouseDetails);
-
+	
+	public void sendValue(String value);
 }

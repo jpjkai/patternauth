@@ -3,10 +3,6 @@ package org.vaadin.jauho.patternauth.client;
 import org.vaadin.jauho.patternauth.PatternAuth;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.MouseOutEvent;
-import com.google.gwt.event.dom.client.MouseOutHandler;
-import com.google.gwt.event.dom.client.MouseOverEvent;
-import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.client.communication.RpcProxy;
@@ -35,27 +31,16 @@ public class PatternAuthConnector extends AbstractComponentConnector {
 			}
 		});
 
-		// We choose listed for mouse clicks for the widget
-		// getWidget().addClickHandler(new ClickHandler() {
-		// public void onClick(ClickEvent event) {
-		// final MouseEventDetails mouseDetails = MouseEventDetailsBuilder
-		// .buildMouseEventDetails(event.getNativeEvent(),
-		// getWidget().getElement());
-		//
-		// // When the widget is clicked, the event is sent to server with
-		// ServerRpc
-		// rpc.clicked(mouseDetails);
-		// }
-		// });
-		//getWidget().addMouseOverHandler(new MyMouseEventHandler());
 	}
-
-	
 
 	// We must implement createWidget() to create correct type of widget
 	@Override
 	protected Widget createWidget() {
-		return GWT.create(PatternAuthWrapper.class);
+		PatternAuthWrapper widget = (PatternAuthWrapper) GWT
+				.create(PatternAuthWrapper.class);
+		widget.setRpc(rpc);
+		widget.addNodes(getState().rows, getState().cols);
+		return widget;
 	}
 
 	// We must implement getWidget() to cast to correct type
@@ -75,9 +60,15 @@ public class PatternAuthConnector extends AbstractComponentConnector {
 	public void onStateChanged(StateChangeEvent stateChangeEvent) {
 		super.onStateChanged(stateChangeEvent);
 
-		// State is directly readable in the client after it is set in server
-		final String text = getState().text;
-		// getWidget().setText(text);
+		getWidget().getElement().setAttribute(
+				"style",
+				"width:" + getState().wWidth + "; height:" + getState().wHeight
+						+ ";");
+		if (stateChangeEvent.hasPropertyChanged("cols")
+				|| stateChangeEvent.hasPropertyChanged("rows")) {
+			getWidget().addNodes(getState().rows, getState().cols);
+		}
+
 	}
 
 }

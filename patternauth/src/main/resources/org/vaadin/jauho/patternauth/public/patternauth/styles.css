@@ -1,7 +1,21 @@
-div.patternauth {
-	cursor: pointer;
-	user-select: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
+.node {
+	float: left;
+	margin: 1%;
+	background: steelblue;
+	border-radius: 50%;
+}
+
+.node:hover {
+	background: red;
+}
+
+.node-selected {
+	float: left;
+	margin: 1%;
+	background: orange;
+	border-radius: 50%;
+}
+
+.wrapper {
+	clear: both;
 }
