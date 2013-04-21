@@ -40,7 +40,7 @@ public class PatternAuthWrapper extends FlowPanel {
 	public void addNodes(int rows, int cols) {
 		clear();
 		for (int i = 0; i < rows*cols; i++) {
-			NodeWidget node = new NodeWidget("ebin" + i);
+			NodeWidget node = new NodeWidget("N" + i);
 			node.getElement().getStyle().setWidth(100/cols-8, Unit.PCT);
 			//node.getElement().getStyle().setHeight(100/rows-2, Unit.PCT);
 			node.getElement().getStyle().setPaddingBottom(100/cols-8, Unit.PCT);
@@ -109,8 +109,8 @@ public class PatternAuthWrapper extends FlowPanel {
 	}
 	
 	private void stateChangeStart(NodeWidget widget) {
-		rpc.sendValue(widget.getTag());
 		result = result + widget.getTag();
+		rpc.sendValue(result);
 		hoveredNodes.add(widget);
 		widget.setNextState();
 	}

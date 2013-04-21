@@ -1,6 +1,6 @@
 package org.vaadin.jauho.patternauth.client;
 
-public class PatternAuthState extends com.vaadin.shared.AbstractComponentState {
+public class PatternAuthState extends com.vaadin.shared.AbstractFieldState {
 
 	// State can have both public variable and bean properties
 	public String text = "PatternAuth";

@@ -4,14 +4,18 @@ import org.vaadin.jauho.patternauth.client.PatternAuthClientRpc;
 import org.vaadin.jauho.patternauth.client.PatternAuthServerRpc;
 import org.vaadin.jauho.patternauth.client.PatternAuthState;
 
+import com.vaadin.shared.AbstractFieldState;
 import com.vaadin.shared.MouseEventDetails;
 import com.vaadin.ui.Notification;
 
 // This is the server-side UI component that provides public API 
 // for PatternAuth
-public class PatternAuth extends com.vaadin.ui.AbstractComponent {
+public class PatternAuth extends com.vaadin.ui.AbstractField<String> {
 
 	private int clickCount = 0;
+	private String savedString; 
+
+
 
 	// To process events from the client, we implement ServerRpc
 	private PatternAuthServerRpc rpc = new PatternAuthServerRpc() {
@@ -32,9 +36,16 @@ public class PatternAuth extends com.vaadin.ui.AbstractComponent {
 
 		@Override
 		public void sendValue(String result) {
-			Notification.show(result);
+			savedString = result;
+			fireValueChange(true);
 		}
+		
 	};
+	
+	@Override
+	public String getValue() {
+		return savedString;
+	}
 
 	public PatternAuth() {
 
@@ -66,5 +77,11 @@ public class PatternAuth extends com.vaadin.ui.AbstractComponent {
 
 	public void setRows(int rows) {
 		getState().rows = rows;
+	}
+
+	@Override
+	public Class<? extends String> getType() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
