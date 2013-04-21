@@ -62,8 +62,9 @@ public class PatternAuthConnector extends AbstractComponentConnector {
 
 		getWidget().getElement().setAttribute(
 				"style",
-				"width:" + getState().wWidth + "; height:" + getState().wHeight
-						+ ";");
+				"width:" + getState().wWidth + ";");
+		//height:" + getState().wHeight
+		//+ ";
 		if (stateChangeEvent.hasPropertyChanged("cols")
 				|| stateChangeEvent.hasPropertyChanged("rows")) {
 			getWidget().addNodes(getState().rows, getState().cols);
